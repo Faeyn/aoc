@@ -63,6 +63,8 @@ for r in range(h):
 
 part_2 = 0
 
+roll_first_pass = set()
+
 while rolls:
     r, c = rolls.pop(0)
 
