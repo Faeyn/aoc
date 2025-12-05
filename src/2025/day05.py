@@ -27,7 +27,7 @@ queue = [r for r in fresh]
 
 f = []
 while queue: 
-    l, r = queue.pop(0)
+    l, r = queue.pop()
 
     for i, (l2, r2) in enumerate(f):
         if r2 >= l and l2 <= r:
