@@ -1,4 +1,5 @@
-f = open('src/2025/.input/day03_input')
+from pathlib import Path
+f = open(Path(__file__).parent / '.input/day03_input')
 data = f.read()
 f.close()
 

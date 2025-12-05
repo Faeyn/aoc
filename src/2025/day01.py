@@ -1,6 +1,7 @@
 import operator as o
+from pathlib import Path
 
-f = open('.input/day01_input')
+f = open(Path(__file__).parent/'.input/day01_input')
 data = f.read()
 f.close()
 data = data.splitlines()

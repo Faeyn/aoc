@@ -1,4 +1,6 @@
-f = open('.input/day02_input')
+from pathlib import Path
+
+f = open(Path(__file__).parent/'.input/day02_input')
 data = f.read()
 f.close()
 
