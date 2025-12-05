@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import datetime
 
 f = open(Path(__file__).parent / '.input/day05_input')
 data = f.read()
@@ -20,8 +21,7 @@ fresh, ids = data.split("\n\n")
 fresh = [(int(l), int(r)) for l, r in [f.split("-") for f in fresh.splitlines()]]
 ids = [int(id) for id in ids.splitlines()]
 
-part_1 = sum([any([l <= id <= r for l, r in fresh]) for id in ids])
-print("Part1: ", part_1)
+start = datetime.now()
 
 stack = [r for r in fresh]
 
@@ -39,6 +39,9 @@ while stack:
 
 
 part_2 = sum([r+1 - l for l, r in f])
+part_1 = sum([any([l <= id <= r for l, r in f]) for id in ids])
+
+print("Part1: ", part_1)
 print("Part2: ", part_2)
 
-
+print(datetime.now() - start)
