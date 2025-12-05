@@ -23,16 +23,16 @@ ids = [int(id) for id in ids.splitlines()]
 part_1 = sum([any([l <= id <= r for l, r in fresh]) for id in ids])
 print("Part1: ", part_1)
 
-queue = [r for r in fresh]
+stack = [r for r in fresh]
 
 f = []
-while queue: 
-    l, r = queue.pop()
+while stack: 
+    l, r = stack.pop()
 
     for i, (l2, r2) in enumerate(f):
         if r2 >= l and l2 <= r:
             f.pop(i)
-            queue.append((min(l, l2), max(r, r2)))
+            stack.append((min(l, l2), max(r, r2)))
             break
     else:
         f.append((l, r))
