@@ -1,5 +1,6 @@
 from pathlib import Path
-from z3 import *
+import numpy as np
+from scipy.optimize import linprog
 
 with open(Path(__file__).parent / ".input/day10") as f:
     data = f.read()
@@ -57,27 +58,12 @@ def bfs(end_state, buttons):
                 q.append((idx, visited, state, pressed))
     return None
 
-
 def solve(joltage, buttons):
-    A = list(zip(*buttons))
-    b = joltage
-    n = len(buttons)
-    m = len(joltage)
-    opt = Optimize()
-
-    x = [Int(f"x{i}") for i in range(n)]
-
-    for xi in x:
-        opt.add(xi >= 0)
-    
-    for i in range(m):
-        opt.add(Sum(A[i][j] * x[j] for j in range(n)) == b[i])
-
-    opt.minimize(Sum(x))
-
-    opt.check()
-    model = opt.model()
-    return model.eval(sum(x)).as_long()
+    A = np.array(list(zip(*buttons)))
+    b = np.array(joltage)
+    c = [1] * len(buttons) 
+    res = linprog(c, A_eq = A, b_eq = b, bounds = (0, None), method = "highs", integrality =1)
+    return int(res.fun)
 
 print("Part1: ", sum(bfs(*x) for x in ms1))
 print("Part2: ", sum(solve(*x) for x in ms2))
