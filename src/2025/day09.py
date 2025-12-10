@@ -4,15 +4,15 @@ from itertools import product
 with open(Path(__file__).parent / ".input/day09_input") as f:
     data = f.read()
 
-# data = """7,1
-# 11,1
-# 11,7
-# 9,7
-# 9,5
-# 2,5
-# 2,3
-# 7,3
-# """
+data = """7,1
+11,1
+11,7
+9,7
+9,5
+2,5
+2,3
+7,3
+"""
 
 data = data.splitlines()
 
